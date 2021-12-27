@@ -10,6 +10,8 @@ RUN echo "devel ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 WORKDIR /tmp
 COPY Gemfile* /tmp/
+COPY package.json /tmp/
+COPY yarn.lock /tmp/
 RUN bundle install \
     && yarn install
 
