@@ -9,7 +9,7 @@ $ docker-compose run --rm web bin/rails db:setup
 $ docker-compose up -d
 ```
 
-- ブラウザで以下の URL にアクセスしてください:
-  - http://baukis2.example.com:3000 -- 職員向けサイト
-  - http://baukis2.example.com:3000/admin -- 管理者向けサイト
-  - http://example.com:3000/mypage -- 顧客向けサイト
+
+- http://baukis2.example.com:3000 -- 職員向けサイト
+- http://baukis2.example.com:3000/admin -- 管理者向けサイト
+- http://example.com:3000/mypage -- 顧客向けサイト
