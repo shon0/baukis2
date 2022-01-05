@@ -1,28 +1,17 @@
-FROM oiax/rails6-deps:latest
+FROM ruby:2.6.4
 
-ARG UID=1000
-ARG GID=1000
-
-RUN mkdir /var/mail
-RUN groupadd -g $GID devel
-RUN useradd -u $UID -g devel -m devel
-RUN echo "devel ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
-
-WORKDIR /tmp
-COPY Gemfile* /tmp/
-COPY package.json /tmp/
-COPY yarn.lock /tmp/
-RUN bundle install \
-    && yarn install
-
-COPY ./ /apps
-
-RUN apk add --no-cache openssl shared-mime-info
-
-USER devel
-
-RUN openssl rand -hex 64 > /home/devel/.secret_key_base
-RUN echo $'export SECRET_KEY_BASE=$(cat /home/devel/.secret_key_base)' \
-  >> /home/devel/.bashrc
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
+  && apt-get update -qq && apt-get install -qq --no-install-recommends \
+  nodejs postgresql-client \
+  && apt-get upgrade -qq \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/* \
+  && npm install -g yarn@1
 
 WORKDIR /apps
+
+COPY Gemfile Gemfile.lock ./
+
+RUN bundle install
+
+COPY . ./

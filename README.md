@@ -5,6 +5,8 @@ Baukis2 は企業向けの顧客管理システム（Ruby on Rails 学習用サ�
 
 ```
 $ docker-compose build --no-cache
+$ docker-compose run --rm web yarn install --check-files
+$ docker-compose run --rm web bin/rails webpacker:install
 $ docker-compose run --rm web bin/rails db:setup
 $ docker-compose up -d
 ```
