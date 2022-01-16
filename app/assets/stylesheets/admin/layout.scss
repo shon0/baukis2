@@ -21,10 +21,13 @@ header {
   padding: $moderate;
   background-color: $dark_magenta;
   color: $very_light_gray;
-}
-
-header span.logo-mark {
-  font-weight: bold;
+  span.logo-mark {
+    font-weight: bold;
+  }
+  a {
+    float: right;
+    color: $very_light_gray;
+  }
 }
 
 footer {
