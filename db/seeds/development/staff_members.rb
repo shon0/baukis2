@@ -10,7 +10,7 @@ StaffMember.create!(
 
 family_names = %w[
   佐藤:サトウ:sato
-  鈴木:鈴木:suzuki
+  鈴木:スズキ:suzuki
   高橋:タカハシ:takahashi
   田中:タナカ:tanaka
 ]
