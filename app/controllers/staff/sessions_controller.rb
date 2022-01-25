@@ -31,7 +31,7 @@ class Staff::SessionsController < Staff::Base
   end
 
   private def login_form_params
-    params.require(:admin_login_form).permit(:email, :password)
+    params.require(:staff_login_form).permit(:email, :password)
   end
 
   def destroy
