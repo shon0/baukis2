@@ -39,7 +39,7 @@ class Admin::StaffMembersController < Admin::Base
 
   private def staff_member_params
     params
-      .require(:xstaff_member)
+      .require(:staff_member)
       .permit(
         :email,
         :password,
