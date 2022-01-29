@@ -40,7 +40,7 @@ class Staff::SessionsController < Staff::Base
   end
 
   def destroy
-    staff_member.events.create!(type: "logged_out") if current_staff_member
+    current_staff_member.events.create!(type: "logged_out") if current_staff_member
     session.delete(:staff_member_id)
     flash.notice = "ログアウトしました。"
     redirect_to :staff_root
