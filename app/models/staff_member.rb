@@ -12,6 +12,7 @@ class StaffMember < ApplicationRecord
   end
 
   KATAKANA_REGEXP = /\A[\p{katakana}\u{30fc}+\z]/
+  HUMAN_NAME_REGEXP = /\A[\p{han}\p{hiragana}\p{katakana}\u{30fc}AZaz]+\z/
 
   validates :email,
             presence: true,
@@ -19,7 +20,13 @@ class StaffMember < ApplicationRecord
             uniqueness: {
               case_sensitive: false
             }
-  validates :family_name, :given_name, presence: true
+  validates :family_name,
+            :given_name,
+            presence: true,
+            format: {
+              with: HUMAN_NAME_REGEXP,
+              allow_blank: true
+            }
   validates :family_name_kana,
             :given_name_kana,
             presence: true,
