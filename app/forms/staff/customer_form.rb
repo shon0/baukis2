@@ -17,6 +17,9 @@ class Staff::CustomerForm
     (2 - @customer.home_address.phones.size).times do
       @customer.home_address.phones.build
     end
+    (2 - @customer.work_address.phones.size).times do
+      @customer.work_address.phones.build
+    end
   end
 
   def assign_attributes(params = {})
@@ -50,6 +53,15 @@ class Staff::CustomerForm
       customer.home_address.mark_for_destruction
     end
     if inputs_work_address
+      phones = phone_params(:work_address).fetch(:phones)
+      customer.work_address.phones.size.times do |index|
+        attributes = phones[index.to_s]
+        if attributes && attributes[:number].present?
+          customer.work_address.phones[index].assign_attributes(attributes)
+        else
+          customer.work_address.phones[index].mark_for_destruction
+        end
+      end
       customer.work_address.assign_attributes(work_address_params)
     else
       customer.work_address.mark_for_destruction
@@ -82,6 +94,7 @@ class Staff::CustomerForm
   private def work_address_params
     @params
       .require(:work_address)
+      .except(:phones)
       .permit(
         :postal_code,
         :prefecture,
