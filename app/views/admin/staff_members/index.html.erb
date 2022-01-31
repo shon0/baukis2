@@ -27,7 +27,7 @@
       <td class="date"><%= m.start_date.strftime("%Y/%m/%d") %></td>
       <td class="date"><%= m.end_date.try(:strftime, "%Y/%m/%d") %></td>
       <td class="boolean"><%= p.suspended_mark %></td>
-      <td c;ass="actions">
+      <td class="actions">
         <%= link_to "編集", [:edit, :admin, m] %> |
         <%= link_to "Events", [:admin, m, :staff_events] %> |
         <%= link_to "削除", [:admin, m], method: :delete, data: {confirm: "本当に削除しますか？"} %>

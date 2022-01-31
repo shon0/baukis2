@@ -25,10 +25,11 @@
       <td class="email"><%= p.email %></td>
       <td class="date"><%= p.birthday %></td>
       <td><%= p.gender %></td>
-      <td c;ass="actions">
-        <%= link_to "詳細", [:staff, c] %> |
-        <%= link_to "編集", [:edit, :staff, c] %> |
-        <%= link_to "削除", [:staff, c], method: :delete, data: {confirm: "本当に削除しますか？"} %>
+      <td class="actions">
+        <%= link_to "詳細", [ :staff, c ] %> |
+        <%= link_to "編集", [ :edit, :staff, c ] %> |
+        <%= link_to "削除", [ :staff, c ], method: :delete,
+            data: { confirm: "本当に削除しますか？" } %>
       </td>
     </tr>
     <% end %>
@@ -36,5 +37,7 @@
 
   <%= paginate @customers %>
 
-  <div class="links"> <%= link_to "新規登録", :new_staff_customer %></div>
+  <div class="links">
+    <%= link_to "新規登録", :new_staff_customer %>
+  </div>
 </div>

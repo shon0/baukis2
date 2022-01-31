@@ -1,8 +1,6 @@
 class UserFormPresenter < FormPresenter
   def password_field_block(name, label_text, options = {})
-    markup(:div, class: "input-block") do |m|
-      super(name, label_text, options) if object.new_record?
-    end
+    super(name, label_text, options) if object.new_record?
   end
 
   def full_name_block(name1, name2, label_text, options = {})
